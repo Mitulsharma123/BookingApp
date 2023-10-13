@@ -7,7 +7,6 @@ import (
 
 func main(){
 	var conferenceName = "Go conference" 
-	const conferenceTicket uint = 50
 	var remainingTickets uint = 50 
 	var bookings []string
 
@@ -29,6 +28,11 @@ func main(){
 
 		fmt.Println("Enter number of tickets:")
 		fmt.Scan(&userTicket)
+
+		if userTicket > int(remainingTickets){
+			fmt.Printf("We've only %v ticket left, you can not book %v tickets.\n", remainingTickets, userTicket)
+			break
+		}
 
 		remainingTickets = remainingTickets - uint(userTicket)
 		//bookings[0] = firstName + " " + lastName 
