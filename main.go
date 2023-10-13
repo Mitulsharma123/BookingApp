@@ -51,5 +51,12 @@ func main(){
 			firstNames = append(firstNames, names[0])
 		}
 		fmt.Printf("These are all list of firstName from our bookings: %v\n", firstNames)
+
+		// when reached 0 we need to end the application code 
+		if remainingTickets == 0{
+			//exit the code
+			fmt.Println("All ticket has been sold out, come next year")
+			break
+		}
 	}
 }
