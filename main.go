@@ -11,6 +11,7 @@ func main(){
 	fmt.Println("welcome to the", conferenceName, "booking application")
 	fmt.Println("Number of tickets available is", remainingTickets)
 
+	for {
 	var firstName,lastName,email string
 	var userTicket int
 	
@@ -35,6 +36,6 @@ func main(){
 	fmt.Printf("%v tickets left now\n", remainingTickets)
 
 	fmt.Printf("These are all our bookings: %v \n", bookings)
-
+	}
+	
 }
-
