@@ -15,7 +15,7 @@ func main(){
 
 	for {
 		var firstName,lastName,email string
-		var userTicket int
+		var userTicket uint
 	
 		fmt.Println("Enter your first name:")
 		fmt.Scan(&firstName)
@@ -29,11 +29,18 @@ func main(){
 		fmt.Println("Enter number of tickets:")
 		fmt.Scan(&userTicket)
 
-		if userTicket > int(remainingTickets){
+		//user input validation
+		isValidName := len(firstName) >= 2 && len(lastName) >= 2  
+		isValidEmail := len(email) >= 2 && strings.Contains(email, "@") 
+		isValidTicketNumber := userTicket > 0 && userTicket <= remainingTickets
+		//isValidCity := city == "Singapore" || city == "USA"
+
+	if isValidName && isValidEmail && isValidTicketNumber{
+		if userTicket > remainingTickets {
 			fmt.Printf("We've only %v ticket left, you can not book %v tickets.\n", remainingTickets, userTicket)
-		}else {
+		} else {
 			remainingTickets = remainingTickets - uint(userTicket)
-		//bookings[0] = firstName + " " + lastName 
+			//bookings[0] = firstName + " " + lastName 
 			bookings = append(bookings, firstName + " " + lastName)
 
 			fmt.Printf("Thanks You!! %v %v for booking %v tickets. You will recive a confirmation email at %v\n", firstName, lastName, userTicket, email)
@@ -52,6 +59,7 @@ func main(){
 				// and return a slice with split elements
 				firstNames = append(firstNames, names[0])
 			}
+			
 			fmt.Printf("These are all list of firstName from our bookings: %v\n", firstNames)
 
 			// when reached 0 we need to end the application code 
@@ -61,6 +69,18 @@ func main(){
 				break
 		}
 	}
+} else {
+		if !isValidName{
+			fmt.Println("Name too short")
+		}
+		if !isValidEmail{
+			fmt.Println("Not a valid email id, missing '@' ")
+		}
+		if !isValidTicketNumber{
+			fmt.Println("Number of tickt entered is invalid")
+		}
+		fmt.Println("Youe input data is invalid, please try again !")
+		}	
 	}
 }
 
