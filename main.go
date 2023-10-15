@@ -3,6 +3,7 @@ package main
 import (
 	"bookingapp/validation" //import package <modulename/packagename>
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -22,6 +23,8 @@ type UserData struct{
 	userTicket uint
 }
 
+var wg = sync.WaitGroup{}
+
 func main(){
 
 	greetUser()
@@ -35,6 +38,7 @@ func main(){
 		// now functionName should start with Capital Latter as calling from package 
 		if isValidName && isValidEmail && isValidTicketNumber{
 			bookTicket(firstName,lastName,email, userTicket)
+			wg.Add(1)
 			go sendTicket(userTicket, firstName, lastName, email)
 			// it blocks the execution of code for 10 seconds; to overcome create a separate thread
 			// go keyword creates a new go routine
@@ -60,6 +64,7 @@ func main(){
 			fmt.Println("Youe input data is invalid, please try again !")
 			}	
 	}
+	wg.Wait()
 }
 
 func greetUser(){
@@ -88,6 +93,7 @@ func getUserInput() (string, string, string, uint){
 	return firstName,lastName,email,userTicket
 }
 
+// genrate and send task run in background
 func bookTicket(firstName string, lastName string, email string, userTicket uint){
 	remainingTickets = remainingTickets - uint(userTicket)
 	//create a emtry map
@@ -127,6 +133,7 @@ func sendTicket(userTicket uint, firstName string, lastName string, email string
 	fmt.Println("###################################################")
 	fmt.Printf("Sending %v to the email address %v\n", ticket, email)
 	fmt.Println("####################################################")
+	wg.Done()
 }
 
 
