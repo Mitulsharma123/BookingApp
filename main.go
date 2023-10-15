@@ -35,7 +35,9 @@ func main(){
 		// now functionName should start with Capital Latter as calling from package 
 		if isValidName && isValidEmail && isValidTicketNumber{
 			bookTicket(firstName,lastName,email, userTicket)
-			sendTicket(userTicket, firstName, lastName, email)
+			go sendTicket(userTicket, firstName, lastName, email)
+			// it blocks the execution of code for 10 seconds; to overcome create a separate thread
+			// go keyword creates a new go routine
 			firstNames := getFirstNames()
 			fmt.Printf("First names of bookings are %v.\n", firstNames)
 
