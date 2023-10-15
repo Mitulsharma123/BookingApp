@@ -27,3 +27,7 @@ Scope of variable
  
 - Global
 * Declaration outside all the functions & uppercase letters, like Myvar used in validation.go ; can be used across all packages 
+
+time
+- sleep function stops or blocks the current thread (go routine) execution for the defined duration. 
+
