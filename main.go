@@ -3,6 +3,7 @@ package main
 import (
 	"bookingapp/validation" //import package <modulename/packagename>
 	"fmt"
+	"time"
 )
 
 //define variable as package level
@@ -119,6 +120,7 @@ func getFirstNames() []string{
 
 // generate a ticket and send it to the email
 func sendTicket(userTicket uint, firstName string, lastName string, email string) {
+	time.Sleep(10 * time.Second)
 	var ticket = fmt.Sprintf("%v ticket for %v %v", userTicket, firstName, lastName)
 	fmt.Println("###################################################")
 	fmt.Printf("Sending %v to the email address %v\n", ticket, email)
