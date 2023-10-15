@@ -15,6 +15,7 @@ Creating a slice with make
  
 Define a structure that can hold mixed data type
 - which fields of the user type
+- struct is a light weight class which e.g. doesn't support inheritance
 
 Scope of variable
 - Local 

@@ -3,7 +3,6 @@ package main
 import (
 	"bookingapp/validation" //import package <modulename/packagename>
 	"fmt"
-	"strconv"
 )
 
 //define variable as package level
@@ -12,7 +11,7 @@ const conferenceTicket int = 50
 var conferenceName = "Go conference" 
 var remainingTickets uint = 50 
 //create an empty list of maps
-var bookings = make([]map[string]string, 0)
+var bookings = make([]UserData, 0)
 
 //define a structure for mixed data type
 type UserData struct{
@@ -88,12 +87,13 @@ func getUserInput() (string, string, string, uint){
 func bookTicket(firstName string, lastName string, email string, userTicket uint){
 	remainingTickets = remainingTickets - uint(userTicket)
 	//create a emtry map
-	var userData = make(map[string]string)
-	userData["firstName"]= firstName
-	userData["lastName"]= lastName
-	userData["email"]= email
-	userData["numberofTicket"] = strconv.FormatUint(uint64(userTicket), 10)
-	
+	var userData = UserData{
+		firstName: firstName,
+		lastName: lastName,
+		email: email,
+		userTicket: userTicket, 
+	}
+
 	bookings = append(bookings, userData)
 	fmt.Printf("List of Bookings is %v\n", bookings)
 
@@ -104,7 +104,7 @@ func bookTicket(firstName string, lastName string, email string, userTicket uint
 func getFirstNames() []string{
 	var firstNames []string
 	for _, booking := range bookings{
-		firstNames = append(firstNames, booking["firstName"])
+		firstNames = append(firstNames, booking.firstName)
 		// range provides the index and value of that element 
 		// range iterate over elemnt for different data structure
 		// blank identifier '_' for unused variable 
