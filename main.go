@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	"bookingapp/validation"
+	"bookingapp/validation" //import package <modulename/packagename>
 )
 
 //define variable as package level
@@ -22,7 +22,8 @@ func main(){
 		firstName,lastName,email,userTicket := getUserInput()
 
 		isValidName, isValidEmail, isValidTicketNumber := validation.ValidateUserInput(firstName, lastName, email, userTicket, remainingTickets)
-
+		//calling function from package <packagename.Functionname>
+		// now functionName should start with Capital Latter as calling from package 
 		if isValidName && isValidEmail && isValidTicketNumber{
 			bookTicket(firstName,lastName,email, userTicket)
 			firstNames := getFirstNames()
