@@ -34,6 +34,7 @@ func main(){
 		// now functionName should start with Capital Latter as calling from package 
 		if isValidName && isValidEmail && isValidTicketNumber{
 			bookTicket(firstName,lastName,email, userTicket)
+			sendTicket(userTicket, firstName, lastName, email)
 			firstNames := getFirstNames()
 			fmt.Printf("First names of bookings are %v.\n", firstNames)
 
@@ -116,7 +117,13 @@ func getFirstNames() []string{
 	return firstNames
 }
 
-
+// generate a ticket and send it to the email
+func sendTicket(userTicket uint, firstName string, lastName string, email string) {
+	var ticket = fmt.Sprintf("%v ticket for %v %v", userTicket, firstName, lastName)
+	fmt.Println("###################################################")
+	fmt.Printf("Sending %v to the email address %v\n", ticket, email)
+	fmt.Println("####################################################")
+}
 
 
 
