@@ -10,6 +10,9 @@ Readable code
 - Print the fist names
 - If no tickets left, exit the program
 
+Creating a slice with make
+- alternative way to create a slice, define the initial size of the slice
+ 
 Scope of variable
 - Local 
 * Declare within function like firstNames, can be used only within that function

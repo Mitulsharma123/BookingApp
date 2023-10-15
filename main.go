@@ -1,17 +1,19 @@
 package main
 
 import (
-	"fmt"
-	"strings"
 	"bookingapp/validation" //import package <modulename/packagename>
+	"fmt"
+	"strconv"
 )
 
 //define variable as package level
-// note : package level variable are created with var keyword 
+// note : package level variable are created with var keyword
 const conferenceTicket int = 50
 var conferenceName = "Go conference" 
 var remainingTickets uint = 50 
-var bookings = []string{}
+//create an empty list of maps
+var bookings = make([]map[string]string, 0)
+
 
 func main(){
 
@@ -78,7 +80,15 @@ func getUserInput() (string, string, string, uint){
 
 func bookTicket(firstName string, lastName string, email string, userTicket uint){
 	remainingTickets = remainingTickets - uint(userTicket)
-	bookings = append(bookings, firstName + " " + lastName)
+	//create a emtry map
+	var userData = make(map[string]string)
+	userData["firstName"]= firstName
+	userData["lastName"]= lastName
+	userData["email"]= email
+	userData["numberofTicket"] = strconv.FormatUint(uint64(userTicket), 10)
+	
+	bookings = append(bookings, userData)
+	fmt.Printf("List of Bookings is %v\n", bookings)
 
 	fmt.Printf("Thanks You!! %v %v for booking %v tickets. You will recive a confirmation email at %v\n", firstName, lastName, userTicket, email)
 	fmt.Printf("%v tickets left now\n", remainingTickets)
@@ -87,8 +97,7 @@ func bookTicket(firstName string, lastName string, email string, userTicket uint
 func getFirstNames() []string{
 	var firstNames []string
 	for _, booking := range bookings{
-		var names = strings.Fields(booking) 
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstName"])
 		// range provides the index and value of that element 
 		// range iterate over elemnt for different data structure
 		// blank identifier '_' for unused variable 
