@@ -34,4 +34,6 @@ time
 go keyword
 - go routine is light weight thread managed by go runtime 
 
-
+Problem we have to fix:
+main go routine exited before "send ticket" had time to start and execute the code
+By default, main go routine does not wait for other goroutine
