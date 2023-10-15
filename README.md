@@ -31,3 +31,7 @@ Scope of variable
 time
 - sleep function stops or blocks the current thread (go routine) execution for the defined duration. 
 
+go keyword
+- go routine is light weight thread managed by go runtime 
+
+
