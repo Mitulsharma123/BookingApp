@@ -14,6 +14,13 @@ var remainingTickets uint = 50
 //create an empty list of maps
 var bookings = make([]map[string]string, 0)
 
+//define a structure for mixed data type
+type UserData struct{
+	firstName string
+	lastName string
+	email string
+	userTicket uint
+}
 
 func main(){
 
