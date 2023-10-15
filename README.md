@@ -37,3 +37,10 @@ go keyword
 Problem we have to fix:
 main go routine exited before "send ticket" had time to start and execute the code
 By default, main go routine does not wait for other goroutine
+
+Solution :
+use wait group that wait for launch goroutine to finish 
+- Add() : set the number of goroutine to wait for (use before the go routine)
+- wait() : block until the counter reaches 0 (use at last line of main.go code)
+- done(): decrement the waitgroup counter by 1 , indicate the it is finished (used inside the goroutine function)
+
