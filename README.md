@@ -13,6 +13,9 @@ Readable code
 Creating a slice with make
 - alternative way to create a slice, define the initial size of the slice
  
+Define a structure that can hold mixed data type
+- which fields of the user type
+
 Scope of variable
 - Local 
 * Declare within function like firstNames, can be used only within that function
