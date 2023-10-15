@@ -49,9 +49,9 @@ func main(){
 }
 
 func greetUser(){
-	fmt.Printf("welcome to the %v", conferenceName, "booking application")
-	fmt.Printf("We've total of %v tickets and tickets available are %v", conferenceTicket, remainingTickets)
-	fmt.Println("Get your tickets here to attend")
+	fmt.Printf("Welcome to the %v booking application!!!\n", conferenceName)
+	fmt.Printf("We've total of %v tickets and tickets available are %v.\n", conferenceTicket, remainingTickets)
+	fmt.Println("Get your tickets here to attend....")
 }
 
 
