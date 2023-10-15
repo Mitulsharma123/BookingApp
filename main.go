@@ -23,9 +23,9 @@ func main(){
 		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTicket, remainingTickets)
 
 		if isValidName && isValidEmail && isValidTicketNumber{
-			bookTicket(firstName,lastName,email, remainingTickets)
+			bookTicket(firstName,lastName,email, userTicket)
 			firstNames := getFirstNames()
-			fmt.Printf("First names of bookings are %v", firstNames)
+			fmt.Printf("First names of bookings are %v.\n", firstNames)
 
 			// when reached 0 we need to end the application code 
 			if remainingTickets == 0{
