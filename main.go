@@ -27,44 +27,40 @@ var wg = sync.WaitGroup{}
 
 func main(){
 
-	greetUser()
-
-	for {
+			greetUser()
 		
-		firstName,lastName,email,userTicket := getUserInput()
+			firstName,lastName,email,userTicket := getUserInput()
 
-		isValidName, isValidEmail, isValidTicketNumber := validation.ValidateUserInput(firstName, lastName, email, userTicket, remainingTickets)
-		//calling function from package <packagename.Functionname>
-		// now functionName should start with Capital Latter as calling from package 
-		if isValidName && isValidEmail && isValidTicketNumber{
-			bookTicket(firstName,lastName,email, userTicket)
-			wg.Add(1)
-			go sendTicket(userTicket, firstName, lastName, email)
-			// it blocks the execution of code for 10 seconds; to overcome create a separate thread
-			// go keyword creates a new go routine
-			firstNames := getFirstNames()
-			fmt.Printf("First names of bookings are %v.\n", firstNames)
+			isValidName, isValidEmail, isValidTicketNumber := validation.ValidateUserInput(firstName, lastName, email, userTicket, remainingTickets)
+			//calling function from package <packagename.Functionname>
+			// now functionName should start with Capital Latter as calling from package 
+			if isValidName && isValidEmail && isValidTicketNumber{
+				bookTicket(firstName,lastName,email, userTicket)
+				wg.Add(1)
+				go sendTicket(userTicket, firstName, lastName, email)
+				// it blocks the execution of code for 10 seconds; to overcome create a separate thread
+				// go keyword creates a new go routine
+				firstNames := getFirstNames()
+				fmt.Printf("First names of bookings are %v.\n", firstNames)
 
-			// when reached 0 we need to end the application code 
-			if remainingTickets == 0{
-				//exit the code
-				fmt.Println("All ticket has been sold out, come next year")
-				break
-			}
-		} else {
-			if !isValidName{
-				fmt.Println("Name too short")
-			}
-			if !isValidEmail{
-				fmt.Println("Not a valid email id, missing '@' ")
-			}
-			if !isValidTicketNumber{
-				fmt.Println("Number of tickt entered is invalid")
-			}
-			fmt.Println("Youe input data is invalid, please try again !")
-			}	
-	}
-	wg.Wait()
+				// when reached 0 we need to end the application code 
+				if remainingTickets == 0{
+					//exit the code
+					fmt.Println("All ticket has been sold out, come next year")
+				}
+			} else {
+				if !isValidName{
+					fmt.Println("Name too short")
+				}
+				if !isValidEmail{
+					fmt.Println("Not a valid email id, missing '@' ")
+				}
+				if !isValidTicketNumber{
+					fmt.Println("Number of tickt entered is invalid")
+				}
+				fmt.Println("Youe input data is invalid, please try again !")
+				}	
+				wg.Wait()
 }
 
 func greetUser(){
