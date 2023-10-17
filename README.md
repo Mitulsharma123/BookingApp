@@ -1,4 +1,6 @@
-# BookingApp
+####BookingApp#######
+
+Designed a CLI app to bookticket using user input like name, lastname, email
 
 Readable code 
 - Greet the user
